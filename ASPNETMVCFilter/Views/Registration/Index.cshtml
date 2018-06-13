@@ -1,0 +1,38 @@
+﻿
+@model ASPNETMVCFilter.Models.Registration.RegistrationVM
+
+@section JavascriptInHead
+{
+    <script type="text/javascript">
+        registrationModule.factory('myData', function()
+        {
+            return {
+                courses: @Html.Raw(Model.Courses),
+                instructors: @Html.Raw(Model.Instructors)
+                };
+        });
+    </script>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><span class="navbar-brand">Registration</span></li>
+                </ul>
+            </div>
+        </div> 
+       <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+               <li>
+                   <a href="/Registration/Courses">Browse Catalog</a>
+               </li>
+               <li>
+                   <a href="/Registration/Instructors">Browse Instructors</a>
+               </li>
+           </ul>
+       </div>
+        <div ng-view></div>
+    </div>
+    </div>

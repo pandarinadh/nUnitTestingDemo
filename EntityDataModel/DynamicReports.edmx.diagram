@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df88b811798e44fe9e627b1bb0c18004" Name="Diagram1">
+        <EntityTypeShape EntityType="DynamicReportsDBModel.ClientSetting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.Deployment" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReport" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportHistory" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportHistoryDetail" Width="1.5" PointX="14.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportHistoryDetailType" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportHistoryType" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportMetric" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportMetricType" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportParameter" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportRenderFormat" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportServer" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportServerType" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportType" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.DynamicReportWriteMode" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.ParameterType" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.SubscriptionClientData" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.SubscriptionDeliveryOption" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.SubscriptionEMailPriority" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.SubscriptionInfo" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.Test" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DynamicReportsDBModel.Log" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReport_DynamicReportServer" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReport_DynamicReportType" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportParameter_DynamicReport" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportSubscriptionInfo_DynamicReport" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportHistory_DynamicReportHistoryType1" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportParameter_ParameterType" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_DynamicReportServer_DynamicReportServerType" ManuallyRouted="false" />
+        <AssociationConnector Association="DynamicReportsDBModel.FK_SubscriptionClientData_SubscriptionClientData" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

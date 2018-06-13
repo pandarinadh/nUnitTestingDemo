@@ -1,0 +1,1204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DynamicReportsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ClientSettings">
+          <Key>
+            <PropertyRef Name="ClientSettingsID" />
+          </Key>
+          <Property Name="ClientSettingsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FileSharePath" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileShareUserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FileSharePassword" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deployment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeploymentDateTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReport">
+          <Key>
+            <PropertyRef Name="DynamicReportID" />
+          </Key>
+          <Property Name="DynamicReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ResourceID" Type="uniqueidentifier" />
+          <Property Name="DynamicReportTypeID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportServerID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="SSRSPath" Type="varchar" MaxLength="500" />
+          <Property Name="HasDataSource" Type="bit" Nullable="false" />
+          <Property Name="HasParameters" Type="bit" Nullable="false" />
+          <Property Name="AllowExcelExport" Type="bit" Nullable="false" />
+          <Property Name="AllowWordExport" Type="bit" Nullable="false" />
+          <Property Name="AllowPDFExport" Type="bit" Nullable="false" />
+          <Property Name="ReadyForOnDemandGeneration" Type="bit" Nullable="false" />
+          <Property Name="ReadyForSubscriptionGeneration" Type="bit" Nullable="false" />
+          <Property Name="DataDrivenDataSourceConnectionString" Type="varchar" MaxLength="250" />
+          <Property Name="DataDrivenDataSourceUserName" Type="varchar" MaxLength="50" />
+          <Property Name="DataDrivenDataSourcePassword" Type="varchar" MaxLength="50" />
+          <Property Name="DataDrivenRecipientAndFieldSQL" Type="text" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistory">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryID" />
+          </Key>
+          <Property Name="DynamicReportHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HistoryGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DynamicReportHistoryTypeID" Type="int" Nullable="false" />
+          <Property Name="History" Type="text" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryDetail">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryDetailID" />
+          </Key>
+          <Property Name="DynamicReportHistoryDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportHistoryID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportHistoryDetailTypeID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportHistoryDetail" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryDetailType">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryDetailTypeID" />
+          </Key>
+          <Property Name="DynamicReportHistoryDetailTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportHistoryDetailType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryType">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryTypeID" />
+          </Key>
+          <Property Name="DynamicReportHistoryTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HistoryType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportMetric">
+          <Key>
+            <PropertyRef Name="DynamicReportMetricID" />
+          </Key>
+          <Property Name="DynamicReportMetricID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DynamicReportMetricTypeID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportServerID" Type="int" Nullable="false" />
+          <Property Name="ApplicationID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportRenderFormatID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartMetricDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndMetricDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportMetricType">
+          <Key>
+            <PropertyRef Name="DynamicReportMetricTypeID" />
+          </Key>
+          <Property Name="DynamicReportMetricTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportMetric" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportParameter">
+          <Key>
+            <PropertyRef Name="DynamicReportParameterID" />
+          </Key>
+          <Property Name="DynamicReportParameterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParameterType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nullable" Type="bit" Nullable="false" />
+          <Property Name="NullableSpecified" Type="bit" Nullable="false" />
+          <Property Name="AllowBlank" Type="bit" Nullable="false" />
+          <Property Name="AllowBlankSpecified" Type="bit" Nullable="false" />
+          <Property Name="MultiValue" Type="bit" Nullable="false" />
+          <Property Name="MultiValueSpecified" Type="bit" Nullable="false" />
+          <Property Name="QueryParameter" Type="bit" Nullable="false" />
+          <Property Name="QueryParameterSpecified" Type="bit" Nullable="false" />
+          <Property Name="MinLength" Type="int" />
+          <Property Name="MaxLength" Type="int" />
+          <Property Name="MinValue" Type="varchar" MaxLength="50" />
+          <Property Name="MaxValue" Type="varchar" MaxLength="50" />
+          <Property Name="RegularExpressionValidation" Type="varchar" MaxLength="250" />
+          <Property Name="UIControlType" Type="varchar" MaxLength="50" />
+          <Property Name="UIRow" Type="int" />
+          <Property Name="UIColumn" Type="int" />
+          <Property Name="ClaimTypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DynamicReportRenderFormat">
+          <Key>
+            <PropertyRef Name="DynamicReportRenderFormatID" />
+          </Key>
+          <Property Name="DynamicReportRenderFormatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RenderFormat" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportServer">
+          <Key>
+            <PropertyRef Name="DynamicReportServerID" />
+          </Key>
+          <Property Name="DynamicReportServerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportServerTypeID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportServerName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DynamicReportServerURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DynamicReportServerDBConnectionString" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportServerType">
+          <Key>
+            <PropertyRef Name="DynamicReportServerTypeID" />
+          </Key>
+          <Property Name="DynamicReportServerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportServerType" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportType">
+          <Key>
+            <PropertyRef Name="DynamicReportTypeID" />
+          </Key>
+          <Property Name="DynamicReportTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportWriteMode">
+          <Key>
+            <PropertyRef Name="DynamicReportWriteModeID" />
+          </Key>
+          <Property Name="DynamicReportWriteModeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WriteMode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DynamicReportsDB.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Exception" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="ParameterType">
+          <Key>
+            <PropertyRef Name="ParameterType" />
+          </Key>
+          <Property Name="ParameterTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParameterType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionClientData">
+          <Key>
+            <PropertyRef Name="SubscriptionClientDataID" />
+          </Key>
+          <Property Name="SubscriptionClientDataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubscriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReciepientEMailAddress" Type="varchar" MaxLength="200" />
+          <Property Name="Contract" Type="nvarchar" MaxLength="10" />
+          <Property Name="SalesYear" Type="int" />
+          <Property Name="CompositeGroupID" Type="int" />
+          <Property Name="DRDateTime" Type="datetime" />
+          <Property Name="DRBoolean" Type="bit" />
+        </EntityType>
+        <EntityType Name="SubscriptionDeliveryOption">
+          <Key>
+            <PropertyRef Name="SubscriptionDeliveryOptionID" />
+          </Key>
+          <Property Name="SubscriptionDeliveryOptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeliveryOption" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionEMailPriority">
+          <Key>
+            <PropertyRef Name="SubscriptionEMailPriorityID" />
+          </Key>
+          <Property Name="SubscriptionEMailPriorityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMailPriority" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionInfo">
+          <Key>
+            <PropertyRef Name="SubscriptionInfoID" />
+          </Key>
+          <Property Name="SubscriptionInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DynamicReportID" Type="int" Nullable="false" />
+          <Property Name="DynamicReportGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SubscriptionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DeliveryType" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="EventType" Type="varchar" MaxLength="25" />
+          <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="500" />
+          <Property Name="FileExtension" Type="varchar" MaxLength="3" />
+          <Property Name="RenderFormat" Type="varchar" MaxLength="25" />
+          <Property Name="WriteMode" Type="varchar" MaxLength="25" />
+          <Property Name="EMailFrom" Type="varchar" MaxLength="500" />
+          <Property Name="EMailTo" Type="varchar" MaxLength="500" />
+          <Property Name="EMailCC" Type="varchar" MaxLength="500" />
+          <Property Name="EMailBcc" Type="varchar" MaxLength="500" />
+          <Property Name="EMailReplyTo" Type="varchar" MaxLength="500" />
+          <Property Name="EMailSubject" Type="varchar" MaxLength="500" />
+          <Property Name="EMailIncludeReport" Type="bit" />
+          <Property Name="EMailIncludeLink" Type="bit" />
+          <Property Name="EMailPriorityID" Type="int" />
+          <Property Name="EMailComment" Type="varchar" MaxLength="500" />
+          <Property Name="ExtensionSettingsExtension" Type="varchar" MaxLength="50" />
+          <Property Name="ScheduleXML" Type="xml" />
+          <Property Name="Timeout" Type="int" />
+          <Property Name="LastRunDateTime" Type="datetime" />
+          <Property Name="LastRunStatus" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_DynamicReport_DynamicReportServer">
+          <End Role="DynamicReportServer" Type="Self.DynamicReportServer" Multiplicity="1" />
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportServer">
+              <PropertyRef Name="DynamicReportServerID" />
+            </Principal>
+            <Dependent Role="DynamicReport">
+              <PropertyRef Name="DynamicReportServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReport_DynamicReportType">
+          <End Role="DynamicReportType" Type="Self.DynamicReportType" Multiplicity="1" />
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportType">
+              <PropertyRef Name="DynamicReportTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReport">
+              <PropertyRef Name="DynamicReportTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportHistory_DynamicReportHistoryType1">
+          <End Role="DynamicReportHistoryType" Type="Self.DynamicReportHistoryType" Multiplicity="1" />
+          <End Role="DynamicReportHistory" Type="Self.DynamicReportHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportHistoryType">
+              <PropertyRef Name="DynamicReportHistoryTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReportHistory">
+              <PropertyRef Name="DynamicReportHistoryTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType">
+          <End Role="DynamicReportHistory" Type="Self.DynamicReportHistory" Multiplicity="1" />
+          <End Role="DynamicReportHistoryDetail" Type="Self.DynamicReportHistoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportHistory">
+              <PropertyRef Name="DynamicReportHistoryID" />
+            </Principal>
+            <Dependent Role="DynamicReportHistoryDetail">
+              <PropertyRef Name="DynamicReportHistoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportParameter_DynamicReport">
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="1" />
+          <End Role="DynamicReportParameter" Type="Self.DynamicReportParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReport">
+              <PropertyRef Name="DynamicReportID" />
+            </Principal>
+            <Dependent Role="DynamicReportParameter">
+              <PropertyRef Name="DynamicReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportParameter_ParameterType">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="DynamicReportParameter" Type="Self.DynamicReportParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterType" />
+            </Principal>
+            <Dependent Role="DynamicReportParameter">
+              <PropertyRef Name="ParameterType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportServer_DynamicReportServerType">
+          <End Role="DynamicReportServerType" Type="Self.DynamicReportServerType" Multiplicity="1" />
+          <End Role="DynamicReportServer" Type="Self.DynamicReportServer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportServerType">
+              <PropertyRef Name="DynamicReportServerTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReportServer">
+              <PropertyRef Name="DynamicReportServerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportSubscriptionInfo_DynamicReport">
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="1" />
+          <End Role="SubscriptionInfo" Type="Self.SubscriptionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReport">
+              <PropertyRef Name="DynamicReportID" />
+            </Principal>
+            <Dependent Role="SubscriptionInfo">
+              <PropertyRef Name="DynamicReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionClientData_SubscriptionClientData">
+          <End Role="SubscriptionClientData" Type="Self.SubscriptionClientData" Multiplicity="1" />
+          <End Role="SubscriptionClientData1" Type="Self.SubscriptionClientData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionClientData">
+              <PropertyRef Name="SubscriptionClientDataID" />
+            </Principal>
+            <Dependent Role="SubscriptionClientData1">
+              <PropertyRef Name="SubscriptionClientDataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DynamicReportsDBModelStoreContainer">
+          <EntitySet Name="ClientSettings" EntityType="Self.ClientSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deployment" EntityType="Self.Deployment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReport" EntityType="Self.DynamicReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportHistory" EntityType="Self.DynamicReportHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportHistoryDetail" EntityType="Self.DynamicReportHistoryDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportHistoryDetailType" EntityType="Self.DynamicReportHistoryDetailType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportHistoryType" EntityType="Self.DynamicReportHistoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportMetric" EntityType="Self.DynamicReportMetric" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportMetricType" EntityType="Self.DynamicReportMetricType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportParameter" EntityType="Self.DynamicReportParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportRenderFormat" EntityType="Self.DynamicReportRenderFormat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportServer" EntityType="Self.DynamicReportServer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportServerType" EntityType="Self.DynamicReportServerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportType" EntityType="Self.DynamicReportType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DynamicReportWriteMode" EntityType="Self.DynamicReportWriteMode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParameterType" EntityType="Self.ParameterType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionClientData" EntityType="Self.SubscriptionClientData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionDeliveryOption" EntityType="Self.SubscriptionDeliveryOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionEMailPriority" EntityType="Self.SubscriptionEMailPriority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionInfo" EntityType="Self.SubscriptionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Log].[Id] AS [Id], 
+    [Log].[Date] AS [Date], 
+    [Log].[Thread] AS [Thread], 
+    [Log].[Level] AS [Level], 
+    [Log].[Logger] AS [Logger], 
+    [Log].[Message] AS [Message], 
+    [Log].[Exception] AS [Exception]
+    FROM [dbo].[Log] AS [Log]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DynamicReport_DynamicReportServer" Association="Self.FK_DynamicReport_DynamicReportServer">
+            <End Role="DynamicReportServer" EntitySet="DynamicReportServer" />
+            <End Role="DynamicReport" EntitySet="DynamicReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReport_DynamicReportType" Association="Self.FK_DynamicReport_DynamicReportType">
+            <End Role="DynamicReportType" EntitySet="DynamicReportType" />
+            <End Role="DynamicReport" EntitySet="DynamicReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportHistory_DynamicReportHistoryType1" Association="Self.FK_DynamicReportHistory_DynamicReportHistoryType1">
+            <End Role="DynamicReportHistoryType" EntitySet="DynamicReportHistoryType" />
+            <End Role="DynamicReportHistory" EntitySet="DynamicReportHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType" Association="Self.FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType">
+            <End Role="DynamicReportHistory" EntitySet="DynamicReportHistory" />
+            <End Role="DynamicReportHistoryDetail" EntitySet="DynamicReportHistoryDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportParameter_DynamicReport" Association="Self.FK_DynamicReportParameter_DynamicReport">
+            <End Role="DynamicReport" EntitySet="DynamicReport" />
+            <End Role="DynamicReportParameter" EntitySet="DynamicReportParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportParameter_ParameterType" Association="Self.FK_DynamicReportParameter_ParameterType">
+            <End Role="ParameterType" EntitySet="ParameterType" />
+            <End Role="DynamicReportParameter" EntitySet="DynamicReportParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportServer_DynamicReportServerType" Association="Self.FK_DynamicReportServer_DynamicReportServerType">
+            <End Role="DynamicReportServerType" EntitySet="DynamicReportServerType" />
+            <End Role="DynamicReportServer" EntitySet="DynamicReportServer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportSubscriptionInfo_DynamicReport" Association="Self.FK_DynamicReportSubscriptionInfo_DynamicReport">
+            <End Role="DynamicReport" EntitySet="DynamicReport" />
+            <End Role="SubscriptionInfo" EntitySet="SubscriptionInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionClientData_SubscriptionClientData" Association="Self.FK_SubscriptionClientData_SubscriptionClientData">
+            <End Role="SubscriptionClientData" EntitySet="SubscriptionClientData" />
+            <End Role="SubscriptionClientData1" EntitySet="SubscriptionClientData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DynamicReportsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ClientSetting">
+          <Key>
+            <PropertyRef Name="ClientSettingsID" />
+          </Key>
+          <Property Name="ClientSettingsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Guid" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileSharePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileShareUserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileSharePassword" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deployment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeploymentDateTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="DynamicReport">
+          <Key>
+            <PropertyRef Name="DynamicReportID" />
+          </Key>
+          <Property Name="DynamicReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportGUID" Type="Guid" Nullable="false" />
+          <Property Name="ResourceID" Type="Guid" />
+          <Property Name="DynamicReportTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportServerID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="SSRSPath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="HasDataSource" Type="Boolean" Nullable="false" />
+          <Property Name="HasParameters" Type="Boolean" Nullable="false" />
+          <Property Name="AllowExcelExport" Type="Boolean" Nullable="false" />
+          <Property Name="AllowWordExport" Type="Boolean" Nullable="false" />
+          <Property Name="AllowPDFExport" Type="Boolean" Nullable="false" />
+          <Property Name="ReadyForOnDemandGeneration" Type="Boolean" Nullable="false" />
+          <Property Name="ReadyForSubscriptionGeneration" Type="Boolean" Nullable="false" />
+          <Property Name="DataDrivenDataSourceConnectionString" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DataDrivenDataSourceUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataDrivenDataSourcePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataDrivenRecipientAndFieldSQL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReportServer" Relationship="Self.FK_DynamicReport_DynamicReportServer" FromRole="DynamicReport" ToRole="DynamicReportServer" />
+          <NavigationProperty Name="DynamicReportType" Relationship="Self.FK_DynamicReport_DynamicReportType" FromRole="DynamicReport" ToRole="DynamicReportType" />
+          <NavigationProperty Name="DynamicReportParameters" Relationship="Self.FK_DynamicReportParameter_DynamicReport" FromRole="DynamicReport" ToRole="DynamicReportParameter" />
+          <NavigationProperty Name="SubscriptionInfoes" Relationship="Self.FK_DynamicReportSubscriptionInfo_DynamicReport" FromRole="DynamicReport" ToRole="SubscriptionInfo" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistory">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryID" />
+          </Key>
+          <Property Name="DynamicReportHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportGUID" Type="Guid" Nullable="false" />
+          <Property Name="HistoryGroupGUID" Type="Guid" Nullable="false" />
+          <Property Name="DynamicReportHistoryTypeID" Type="Int32" Nullable="false" />
+          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DynamicReportHistoryType" Relationship="Self.FK_DynamicReportHistory_DynamicReportHistoryType1" FromRole="DynamicReportHistory" ToRole="DynamicReportHistoryType" />
+          <NavigationProperty Name="DynamicReportHistoryDetails" Relationship="Self.FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType" FromRole="DynamicReportHistory" ToRole="DynamicReportHistoryDetail" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryDetail">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryDetailID" />
+          </Key>
+          <Property Name="DynamicReportHistoryDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportHistoryID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportHistoryDetailTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportHistoryDetail1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReportHistory" Relationship="Self.FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType" FromRole="DynamicReportHistoryDetail" ToRole="DynamicReportHistory" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryDetailType">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryDetailTypeID" />
+          </Key>
+          <Property Name="DynamicReportHistoryDetailTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportHistoryDetailType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportHistoryType">
+          <Key>
+            <PropertyRef Name="DynamicReportHistoryTypeID" />
+          </Key>
+          <Property Name="DynamicReportHistoryTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HistoryType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReportHistories" Relationship="Self.FK_DynamicReportHistory_DynamicReportHistoryType1" FromRole="DynamicReportHistoryType" ToRole="DynamicReportHistory" />
+        </EntityType>
+        <EntityType Name="DynamicReportMetric">
+          <Key>
+            <PropertyRef Name="DynamicReportMetricID" />
+          </Key>
+          <Property Name="DynamicReportMetricID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportGUID" Type="Guid" Nullable="false" />
+          <Property Name="DynamicReportMetricTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportServerID" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportRenderFormatID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartMetricDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndMetricDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="DynamicReportMetricType">
+          <Key>
+            <PropertyRef Name="DynamicReportMetricTypeID" />
+          </Key>
+          <Property Name="DynamicReportMetricTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportMetric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportParameter">
+          <Key>
+            <PropertyRef Name="DynamicReportParameterID" />
+          </Key>
+          <Property Name="DynamicReportParameterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParameterType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nullable" Type="Boolean" Nullable="false" />
+          <Property Name="NullableSpecified" Type="Boolean" Nullable="false" />
+          <Property Name="AllowBlank" Type="Boolean" Nullable="false" />
+          <Property Name="AllowBlankSpecified" Type="Boolean" Nullable="false" />
+          <Property Name="MultiValue" Type="Boolean" Nullable="false" />
+          <Property Name="MultiValueSpecified" Type="Boolean" Nullable="false" />
+          <Property Name="QueryParameter" Type="Boolean" Nullable="false" />
+          <Property Name="QueryParameterSpecified" Type="Boolean" Nullable="false" />
+          <Property Name="MinLength" Type="Int32" />
+          <Property Name="MaxLength" Type="Int32" />
+          <Property Name="MinValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaxValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegularExpressionValidation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="UIControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UIRow" Type="Int32" />
+          <Property Name="UIColumn" Type="Int32" />
+          <Property Name="ClaimTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DynamicReport" Relationship="Self.FK_DynamicReportParameter_DynamicReport" FromRole="DynamicReportParameter" ToRole="DynamicReport" />
+          <NavigationProperty Name="ParameterType1" Relationship="Self.FK_DynamicReportParameter_ParameterType" FromRole="DynamicReportParameter" ToRole="ParameterType" />
+        </EntityType>
+        <EntityType Name="DynamicReportRenderFormat">
+          <Key>
+            <PropertyRef Name="DynamicReportRenderFormatID" />
+          </Key>
+          <Property Name="DynamicReportRenderFormatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RenderFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DynamicReportServer">
+          <Key>
+            <PropertyRef Name="DynamicReportServerID" />
+          </Key>
+          <Property Name="DynamicReportServerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportServerTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportServerName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DynamicReportServerURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DynamicReportServerDBConnectionString" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReports" Relationship="Self.FK_DynamicReport_DynamicReportServer" FromRole="DynamicReportServer" ToRole="DynamicReport" />
+          <NavigationProperty Name="DynamicReportServerType" Relationship="Self.FK_DynamicReportServer_DynamicReportServerType" FromRole="DynamicReportServer" ToRole="DynamicReportServerType" />
+        </EntityType>
+        <EntityType Name="DynamicReportServerType">
+          <Key>
+            <PropertyRef Name="DynamicReportServerTypeID" />
+          </Key>
+          <Property Name="DynamicReportServerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportServerType" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReportServers" Relationship="Self.FK_DynamicReportServer_DynamicReportServerType" FromRole="DynamicReportServerType" ToRole="DynamicReportServer" />
+        </EntityType>
+        <EntityType Name="DynamicReportType">
+          <Key>
+            <PropertyRef Name="DynamicReportTypeID" />
+          </Key>
+          <Property Name="DynamicReportTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReports" Relationship="Self.FK_DynamicReport_DynamicReportType" FromRole="DynamicReportType" ToRole="DynamicReport" />
+        </EntityType>
+        <EntityType Name="DynamicReportWriteMode">
+          <Key>
+            <PropertyRef Name="DynamicReportWriteModeID" />
+          </Key>
+          <Property Name="DynamicReportWriteModeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WriteMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParameterType">
+          <Key>
+            <PropertyRef Name="ParameterType1" />
+          </Key>
+          <Property Name="ParameterTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParameterType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DynamicReportParameters" Relationship="Self.FK_DynamicReportParameter_ParameterType" FromRole="ParameterType" ToRole="DynamicReportParameter" />
+        </EntityType>
+        <EntityType Name="SubscriptionClientData">
+          <Key>
+            <PropertyRef Name="SubscriptionClientDataID" />
+          </Key>
+          <Property Name="SubscriptionClientDataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+          <Property Name="ClientID" Type="Guid" Nullable="false" />
+          <Property Name="ReciepientEMailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Contract" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SalesYear" Type="Int32" />
+          <Property Name="CompositeGroupID" Type="Int32" />
+          <Property Name="DRDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DRBoolean" Type="Boolean" />
+          <NavigationProperty Name="SubscriptionClientData1" Relationship="Self.FK_SubscriptionClientData_SubscriptionClientData" FromRole="SubscriptionClientData" ToRole="SubscriptionClientData1" />
+          <NavigationProperty Name="SubscriptionClientData2" Relationship="Self.FK_SubscriptionClientData_SubscriptionClientData" FromRole="SubscriptionClientData1" ToRole="SubscriptionClientData" />
+        </EntityType>
+        <EntityType Name="SubscriptionDeliveryOption">
+          <Key>
+            <PropertyRef Name="SubscriptionDeliveryOptionID" />
+          </Key>
+          <Property Name="SubscriptionDeliveryOptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeliveryOption" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionEMailPriority">
+          <Key>
+            <PropertyRef Name="SubscriptionEMailPriorityID" />
+          </Key>
+          <Property Name="SubscriptionEMailPriorityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMailPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionInfo">
+          <Key>
+            <PropertyRef Name="SubscriptionInfoID" />
+          </Key>
+          <Property Name="SubscriptionInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DynamicReportID" Type="Int32" Nullable="false" />
+          <Property Name="DynamicReportGUID" Type="Guid" Nullable="false" />
+          <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+          <Property Name="ClientID" Type="Guid" Nullable="false" />
+          <Property Name="DeliveryType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FileExtension" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="RenderFormat" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="WriteMode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EMailFrom" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailTo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailCC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailBcc" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailReplyTo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailSubject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMailIncludeReport" Type="Boolean" />
+          <Property Name="EMailIncludeLink" Type="Boolean" />
+          <Property Name="EMailPriorityID" Type="Int32" />
+          <Property Name="EMailComment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExtensionSettingsExtension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScheduleXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Timeout" Type="Int32" />
+          <Property Name="LastRunDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastRunStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DynamicReport" Relationship="Self.FK_DynamicReportSubscriptionInfo_DynamicReport" FromRole="SubscriptionInfo" ToRole="DynamicReport" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logger" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exception" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DynamicReport_DynamicReportServer">
+          <End Role="DynamicReportServer" Type="Self.DynamicReportServer" Multiplicity="1" />
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportServer">
+              <PropertyRef Name="DynamicReportServerID" />
+            </Principal>
+            <Dependent Role="DynamicReport">
+              <PropertyRef Name="DynamicReportServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReport_DynamicReportType">
+          <End Role="DynamicReportType" Type="Self.DynamicReportType" Multiplicity="1" />
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportType">
+              <PropertyRef Name="DynamicReportTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReport">
+              <PropertyRef Name="DynamicReportTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportParameter_DynamicReport">
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="1" />
+          <End Role="DynamicReportParameter" Type="Self.DynamicReportParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReport">
+              <PropertyRef Name="DynamicReportID" />
+            </Principal>
+            <Dependent Role="DynamicReportParameter">
+              <PropertyRef Name="DynamicReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportSubscriptionInfo_DynamicReport">
+          <End Role="DynamicReport" Type="Self.DynamicReport" Multiplicity="1" />
+          <End Role="SubscriptionInfo" Type="Self.SubscriptionInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReport">
+              <PropertyRef Name="DynamicReportID" />
+            </Principal>
+            <Dependent Role="SubscriptionInfo">
+              <PropertyRef Name="DynamicReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportHistory_DynamicReportHistoryType1">
+          <End Role="DynamicReportHistoryType" Type="Self.DynamicReportHistoryType" Multiplicity="1" />
+          <End Role="DynamicReportHistory" Type="Self.DynamicReportHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportHistoryType">
+              <PropertyRef Name="DynamicReportHistoryTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReportHistory">
+              <PropertyRef Name="DynamicReportHistoryTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType">
+          <End Role="DynamicReportHistory" Type="Self.DynamicReportHistory" Multiplicity="1" />
+          <End Role="DynamicReportHistoryDetail" Type="Self.DynamicReportHistoryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportHistory">
+              <PropertyRef Name="DynamicReportHistoryID" />
+            </Principal>
+            <Dependent Role="DynamicReportHistoryDetail">
+              <PropertyRef Name="DynamicReportHistoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportParameter_ParameterType">
+          <End Role="ParameterType" Type="Self.ParameterType" Multiplicity="1" />
+          <End Role="DynamicReportParameter" Type="Self.DynamicReportParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParameterType">
+              <PropertyRef Name="ParameterType1" />
+            </Principal>
+            <Dependent Role="DynamicReportParameter">
+              <PropertyRef Name="ParameterType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DynamicReportServer_DynamicReportServerType">
+          <End Role="DynamicReportServerType" Type="Self.DynamicReportServerType" Multiplicity="1" />
+          <End Role="DynamicReportServer" Type="Self.DynamicReportServer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DynamicReportServerType">
+              <PropertyRef Name="DynamicReportServerTypeID" />
+            </Principal>
+            <Dependent Role="DynamicReportServer">
+              <PropertyRef Name="DynamicReportServerTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubscriptionClientData_SubscriptionClientData">
+          <End Role="SubscriptionClientData" Type="Self.SubscriptionClientData" Multiplicity="1" />
+          <End Role="SubscriptionClientData1" Type="Self.SubscriptionClientData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SubscriptionClientData">
+              <PropertyRef Name="SubscriptionClientDataID" />
+            </Principal>
+            <Dependent Role="SubscriptionClientData1">
+              <PropertyRef Name="SubscriptionClientDataID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DynamicReportsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClientSettings" EntityType="Self.ClientSetting" />
+          <EntitySet Name="Deployments" EntityType="Self.Deployment" />
+          <EntitySet Name="DynamicReports" EntityType="Self.DynamicReport" />
+          <EntitySet Name="DynamicReportHistories" EntityType="Self.DynamicReportHistory" />
+          <EntitySet Name="DynamicReportHistoryDetails" EntityType="Self.DynamicReportHistoryDetail" />
+          <EntitySet Name="DynamicReportHistoryDetailTypes" EntityType="Self.DynamicReportHistoryDetailType" />
+          <EntitySet Name="DynamicReportHistoryTypes" EntityType="Self.DynamicReportHistoryType" />
+          <EntitySet Name="DynamicReportMetrics" EntityType="Self.DynamicReportMetric" />
+          <EntitySet Name="DynamicReportMetricTypes" EntityType="Self.DynamicReportMetricType" />
+          <EntitySet Name="DynamicReportParameters" EntityType="Self.DynamicReportParameter" />
+          <EntitySet Name="DynamicReportRenderFormats" EntityType="Self.DynamicReportRenderFormat" />
+          <EntitySet Name="DynamicReportServers" EntityType="Self.DynamicReportServer" />
+          <EntitySet Name="DynamicReportServerTypes" EntityType="Self.DynamicReportServerType" />
+          <EntitySet Name="DynamicReportTypes" EntityType="Self.DynamicReportType" />
+          <EntitySet Name="DynamicReportWriteModes" EntityType="Self.DynamicReportWriteMode" />
+          <EntitySet Name="ParameterTypes" EntityType="Self.ParameterType" />
+          <EntitySet Name="SubscriptionClientDatas" EntityType="Self.SubscriptionClientData" />
+          <EntitySet Name="SubscriptionDeliveryOptions" EntityType="Self.SubscriptionDeliveryOption" />
+          <EntitySet Name="SubscriptionEMailPriorities" EntityType="Self.SubscriptionEMailPriority" />
+          <EntitySet Name="SubscriptionInfoes" EntityType="Self.SubscriptionInfo" />
+          <EntitySet Name="Tests" EntityType="Self.Test" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <AssociationSet Name="FK_DynamicReport_DynamicReportServer" Association="Self.FK_DynamicReport_DynamicReportServer">
+            <End Role="DynamicReportServer" EntitySet="DynamicReportServers" />
+            <End Role="DynamicReport" EntitySet="DynamicReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReport_DynamicReportType" Association="Self.FK_DynamicReport_DynamicReportType">
+            <End Role="DynamicReportType" EntitySet="DynamicReportTypes" />
+            <End Role="DynamicReport" EntitySet="DynamicReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportParameter_DynamicReport" Association="Self.FK_DynamicReportParameter_DynamicReport">
+            <End Role="DynamicReport" EntitySet="DynamicReports" />
+            <End Role="DynamicReportParameter" EntitySet="DynamicReportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportSubscriptionInfo_DynamicReport" Association="Self.FK_DynamicReportSubscriptionInfo_DynamicReport">
+            <End Role="DynamicReport" EntitySet="DynamicReports" />
+            <End Role="SubscriptionInfo" EntitySet="SubscriptionInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportHistory_DynamicReportHistoryType1" Association="Self.FK_DynamicReportHistory_DynamicReportHistoryType1">
+            <End Role="DynamicReportHistoryType" EntitySet="DynamicReportHistoryTypes" />
+            <End Role="DynamicReportHistory" EntitySet="DynamicReportHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType" Association="Self.FK_DynamicReportHistoryDetail_DynamicReportHistoryDetailType">
+            <End Role="DynamicReportHistory" EntitySet="DynamicReportHistories" />
+            <End Role="DynamicReportHistoryDetail" EntitySet="DynamicReportHistoryDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportParameter_ParameterType" Association="Self.FK_DynamicReportParameter_ParameterType">
+            <End Role="ParameterType" EntitySet="ParameterTypes" />
+            <End Role="DynamicReportParameter" EntitySet="DynamicReportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DynamicReportServer_DynamicReportServerType" Association="Self.FK_DynamicReportServer_DynamicReportServerType">
+            <End Role="DynamicReportServerType" EntitySet="DynamicReportServerTypes" />
+            <End Role="DynamicReportServer" EntitySet="DynamicReportServers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubscriptionClientData_SubscriptionClientData" Association="Self.FK_SubscriptionClientData_SubscriptionClientData">
+            <End Role="SubscriptionClientData" EntitySet="SubscriptionClientDatas" />
+            <End Role="SubscriptionClientData1" EntitySet="SubscriptionClientDatas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DynamicReportsDBModelStoreContainer" CdmEntityContainer="DynamicReportsDBEntities">
+          <EntitySetMapping Name="ClientSettings">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.ClientSetting">
+              <MappingFragment StoreEntitySet="ClientSettings">
+                <ScalarProperty Name="ClientSettingsID" ColumnName="ClientSettingsID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="FileSharePath" ColumnName="FileSharePath" />
+                <ScalarProperty Name="FileShareUserName" ColumnName="FileShareUserName" />
+                <ScalarProperty Name="FileSharePassword" ColumnName="FileSharePassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deployments">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.Deployment">
+              <MappingFragment StoreEntitySet="Deployment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BuildNumber" ColumnName="BuildNumber" />
+                <ScalarProperty Name="DeploymentDateTime" ColumnName="DeploymentDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReports">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReport">
+              <MappingFragment StoreEntitySet="DynamicReport">
+                <ScalarProperty Name="DynamicReportID" ColumnName="DynamicReportID" />
+                <ScalarProperty Name="DynamicReportGUID" ColumnName="DynamicReportGUID" />
+                <ScalarProperty Name="ResourceID" ColumnName="ResourceID" />
+                <ScalarProperty Name="DynamicReportTypeID" ColumnName="DynamicReportTypeID" />
+                <ScalarProperty Name="DynamicReportServerID" ColumnName="DynamicReportServerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SSRSPath" ColumnName="SSRSPath" />
+                <ScalarProperty Name="HasDataSource" ColumnName="HasDataSource" />
+                <ScalarProperty Name="HasParameters" ColumnName="HasParameters" />
+                <ScalarProperty Name="AllowExcelExport" ColumnName="AllowExcelExport" />
+                <ScalarProperty Name="AllowWordExport" ColumnName="AllowWordExport" />
+                <ScalarProperty Name="AllowPDFExport" ColumnName="AllowPDFExport" />
+                <ScalarProperty Name="ReadyForOnDemandGeneration" ColumnName="ReadyForOnDemandGeneration" />
+                <ScalarProperty Name="ReadyForSubscriptionGeneration" ColumnName="ReadyForSubscriptionGeneration" />
+                <ScalarProperty Name="DataDrivenDataSourceConnectionString" ColumnName="DataDrivenDataSourceConnectionString" />
+                <ScalarProperty Name="DataDrivenDataSourceUserName" ColumnName="DataDrivenDataSourceUserName" />
+                <ScalarProperty Name="DataDrivenDataSourcePassword" ColumnName="DataDrivenDataSourcePassword" />
+                <ScalarProperty Name="DataDrivenRecipientAndFieldSQL" ColumnName="DataDrivenRecipientAndFieldSQL" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportHistories">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportHistory">
+              <MappingFragment StoreEntitySet="DynamicReportHistory">
+                <ScalarProperty Name="DynamicReportHistoryID" ColumnName="DynamicReportHistoryID" />
+                <ScalarProperty Name="DynamicReportGUID" ColumnName="DynamicReportGUID" />
+                <ScalarProperty Name="HistoryGroupGUID" ColumnName="HistoryGroupGUID" />
+                <ScalarProperty Name="DynamicReportHistoryTypeID" ColumnName="DynamicReportHistoryTypeID" />
+                <ScalarProperty Name="History" ColumnName="History" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportHistoryDetails">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportHistoryDetail">
+              <MappingFragment StoreEntitySet="DynamicReportHistoryDetail">
+                <ScalarProperty Name="DynamicReportHistoryDetailID" ColumnName="DynamicReportHistoryDetailID" />
+                <ScalarProperty Name="DynamicReportHistoryID" ColumnName="DynamicReportHistoryID" />
+                <ScalarProperty Name="DynamicReportHistoryDetailTypeID" ColumnName="DynamicReportHistoryDetailTypeID" />
+                <ScalarProperty Name="DynamicReportHistoryDetail1" ColumnName="DynamicReportHistoryDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportHistoryDetailTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportHistoryDetailType">
+              <MappingFragment StoreEntitySet="DynamicReportHistoryDetailType">
+                <ScalarProperty Name="DynamicReportHistoryDetailTypeID" ColumnName="DynamicReportHistoryDetailTypeID" />
+                <ScalarProperty Name="DynamicReportHistoryDetailType1" ColumnName="DynamicReportHistoryDetailType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportHistoryTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportHistoryType">
+              <MappingFragment StoreEntitySet="DynamicReportHistoryType">
+                <ScalarProperty Name="DynamicReportHistoryTypeID" ColumnName="DynamicReportHistoryTypeID" />
+                <ScalarProperty Name="HistoryType" ColumnName="HistoryType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportMetrics">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportMetric">
+              <MappingFragment StoreEntitySet="DynamicReportMetric">
+                <ScalarProperty Name="DynamicReportMetricID" ColumnName="DynamicReportMetricID" />
+                <ScalarProperty Name="DynamicReportGUID" ColumnName="DynamicReportGUID" />
+                <ScalarProperty Name="DynamicReportMetricTypeID" ColumnName="DynamicReportMetricTypeID" />
+                <ScalarProperty Name="DynamicReportServerID" ColumnName="DynamicReportServerID" />
+                <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+                <ScalarProperty Name="DynamicReportRenderFormatID" ColumnName="DynamicReportRenderFormatID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="StartMetricDateTime" ColumnName="StartMetricDateTime" />
+                <ScalarProperty Name="EndMetricDateTime" ColumnName="EndMetricDateTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportMetricTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportMetricType">
+              <MappingFragment StoreEntitySet="DynamicReportMetricType">
+                <ScalarProperty Name="DynamicReportMetricTypeID" ColumnName="DynamicReportMetricTypeID" />
+                <ScalarProperty Name="DynamicReportMetric" ColumnName="DynamicReportMetric" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportParameters">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportParameter">
+              <MappingFragment StoreEntitySet="DynamicReportParameter">
+                <ScalarProperty Name="DynamicReportParameterID" ColumnName="DynamicReportParameterID" />
+                <ScalarProperty Name="DynamicReportID" ColumnName="DynamicReportID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParameterType" ColumnName="ParameterType" />
+                <ScalarProperty Name="Nullable" ColumnName="Nullable" />
+                <ScalarProperty Name="NullableSpecified" ColumnName="NullableSpecified" />
+                <ScalarProperty Name="AllowBlank" ColumnName="AllowBlank" />
+                <ScalarProperty Name="AllowBlankSpecified" ColumnName="AllowBlankSpecified" />
+                <ScalarProperty Name="MultiValue" ColumnName="MultiValue" />
+                <ScalarProperty Name="MultiValueSpecified" ColumnName="MultiValueSpecified" />
+                <ScalarProperty Name="QueryParameter" ColumnName="QueryParameter" />
+                <ScalarProperty Name="QueryParameterSpecified" ColumnName="QueryParameterSpecified" />
+                <ScalarProperty Name="MinLength" ColumnName="MinLength" />
+                <ScalarProperty Name="MaxLength" ColumnName="MaxLength" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="RegularExpressionValidation" ColumnName="RegularExpressionValidation" />
+                <ScalarProperty Name="UIControlType" ColumnName="UIControlType" />
+                <ScalarProperty Name="UIRow" ColumnName="UIRow" />
+                <ScalarProperty Name="UIColumn" ColumnName="UIColumn" />
+                <ScalarProperty Name="ClaimTypeName" ColumnName="ClaimTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportRenderFormats">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportRenderFormat">
+              <MappingFragment StoreEntitySet="DynamicReportRenderFormat">
+                <ScalarProperty Name="DynamicReportRenderFormatID" ColumnName="DynamicReportRenderFormatID" />
+                <ScalarProperty Name="RenderFormat" ColumnName="RenderFormat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportServers">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportServer">
+              <MappingFragment StoreEntitySet="DynamicReportServer">
+                <ScalarProperty Name="DynamicReportServerID" ColumnName="DynamicReportServerID" />
+                <ScalarProperty Name="DynamicReportServerTypeID" ColumnName="DynamicReportServerTypeID" />
+                <ScalarProperty Name="DynamicReportServerName" ColumnName="DynamicReportServerName" />
+                <ScalarProperty Name="DynamicReportServerURL" ColumnName="DynamicReportServerURL" />
+                <ScalarProperty Name="DynamicReportServerDBConnectionString" ColumnName="DynamicReportServerDBConnectionString" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportServerTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportServerType">
+              <MappingFragment StoreEntitySet="DynamicReportServerType">
+                <ScalarProperty Name="DynamicReportServerTypeID" ColumnName="DynamicReportServerTypeID" />
+                <ScalarProperty Name="ReportServerType" ColumnName="ReportServerType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportType">
+              <MappingFragment StoreEntitySet="DynamicReportType">
+                <ScalarProperty Name="DynamicReportTypeID" ColumnName="DynamicReportTypeID" />
+                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DynamicReportWriteModes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.DynamicReportWriteMode">
+              <MappingFragment StoreEntitySet="DynamicReportWriteMode">
+                <ScalarProperty Name="DynamicReportWriteModeID" ColumnName="DynamicReportWriteModeID" />
+                <ScalarProperty Name="WriteMode" ColumnName="WriteMode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParameterTypes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.ParameterType">
+              <MappingFragment StoreEntitySet="ParameterType">
+                <ScalarProperty Name="ParameterTypeID" ColumnName="ParameterTypeID" />
+                <ScalarProperty Name="ParameterType1" ColumnName="ParameterType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionClientDatas">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.SubscriptionClientData">
+              <MappingFragment StoreEntitySet="SubscriptionClientData">
+                <ScalarProperty Name="SubscriptionClientDataID" ColumnName="SubscriptionClientDataID" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ReciepientEMailAddress" ColumnName="ReciepientEMailAddress" />
+                <ScalarProperty Name="Contract" ColumnName="Contract" />
+                <ScalarProperty Name="SalesYear" ColumnName="SalesYear" />
+                <ScalarProperty Name="CompositeGroupID" ColumnName="CompositeGroupID" />
+                <ScalarProperty Name="DRDateTime" ColumnName="DRDateTime" />
+                <ScalarProperty Name="DRBoolean" ColumnName="DRBoolean" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionDeliveryOptions">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.SubscriptionDeliveryOption">
+              <MappingFragment StoreEntitySet="SubscriptionDeliveryOption">
+                <ScalarProperty Name="SubscriptionDeliveryOptionID" ColumnName="SubscriptionDeliveryOptionID" />
+                <ScalarProperty Name="DeliveryOption" ColumnName="DeliveryOption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionEMailPriorities">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.SubscriptionEMailPriority">
+              <MappingFragment StoreEntitySet="SubscriptionEMailPriority">
+                <ScalarProperty Name="SubscriptionEMailPriorityID" ColumnName="SubscriptionEMailPriorityID" />
+                <ScalarProperty Name="EMailPriority" ColumnName="EMailPriority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionInfoes">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.SubscriptionInfo">
+              <MappingFragment StoreEntitySet="SubscriptionInfo">
+                <ScalarProperty Name="SubscriptionInfoID" ColumnName="SubscriptionInfoID" />
+                <ScalarProperty Name="DynamicReportID" ColumnName="DynamicReportID" />
+                <ScalarProperty Name="DynamicReportGUID" ColumnName="DynamicReportGUID" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="DeliveryType" ColumnName="DeliveryType" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="RenderFormat" ColumnName="RenderFormat" />
+                <ScalarProperty Name="WriteMode" ColumnName="WriteMode" />
+                <ScalarProperty Name="EMailFrom" ColumnName="EMailFrom" />
+                <ScalarProperty Name="EMailTo" ColumnName="EMailTo" />
+                <ScalarProperty Name="EMailCC" ColumnName="EMailCC" />
+                <ScalarProperty Name="EMailBcc" ColumnName="EMailBcc" />
+                <ScalarProperty Name="EMailReplyTo" ColumnName="EMailReplyTo" />
+                <ScalarProperty Name="EMailSubject" ColumnName="EMailSubject" />
+                <ScalarProperty Name="EMailIncludeReport" ColumnName="EMailIncludeReport" />
+                <ScalarProperty Name="EMailIncludeLink" ColumnName="EMailIncludeLink" />
+                <ScalarProperty Name="EMailPriorityID" ColumnName="EMailPriorityID" />
+                <ScalarProperty Name="EMailComment" ColumnName="EMailComment" />
+                <ScalarProperty Name="ExtensionSettingsExtension" ColumnName="ExtensionSettingsExtension" />
+                <ScalarProperty Name="ScheduleXML" ColumnName="ScheduleXML" />
+                <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+                <ScalarProperty Name="LastRunDateTime" ColumnName="LastRunDateTime" />
+                <ScalarProperty Name="LastRunStatus" ColumnName="LastRunStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="DynamicReportsDBModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
