@@ -11,11 +11,17 @@
                     <th>Number</th>
                     <th>Name</th>
                     <th>Subject</th>
+                    <th>open</th>
                 </tr>
                 <tr ng-repeat="instructor in instructors">
                     <td>{{instructor.number}}</td>
                     <td>{{instructor.name}}</td>
                     <td>{{instructor.subject}}</td>
+                    <td>
+                        <button ng-click="showDialog($event)" class="md-raised">
+                        Custom Dialog
+                        </button>
+                    </td>
                 </tr>
             </table>
         </div>
