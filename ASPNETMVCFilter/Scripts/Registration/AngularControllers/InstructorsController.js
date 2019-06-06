@@ -1,7 +1,6 @@
 ﻿'use strict';
 
 registrationModule.controller("InstructorsController",['$scope', '$mdDialog','$templateCache','myData', function ($scope, $mdDialog,$templateCache, myData) {
-    console.log(myData);
     $scope.instructors = myData.instructors;
 
     $scope.myName = '';
