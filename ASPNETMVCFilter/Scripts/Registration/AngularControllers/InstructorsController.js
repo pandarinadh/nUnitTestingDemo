@@ -1,11 +1,13 @@
 ﻿'use strict';
 
-registrationModule.controller("InstructorsController",['$scope', '$mdDialog','myData', function ($scope, $mdDialog, myData) {
+registrationModule.controller("InstructorsController",['$scope', '$mdDialog','$templateCache','myData', function ($scope, $mdDialog,$templateCache, myData) {
     console.log(myData);
     $scope.instructors = myData.instructors;
 
     $scope.myName = '';
     $scope.myTextArea = '';
+
+
 
     $scope.showDialog = function ($event) {
         alert = $mdDialog.alert({
@@ -25,10 +27,14 @@ registrationModule.controller("InstructorsController",['$scope', '$mdDialog','my
     };
 
     $scope.showApplyChangesDialog = function ($event) {
+
+        $templateCache.remove('/templates/directives/instructorInfo.html')
+
         $mdDialog.show({
             scope: $scope,
             preserveScope: true,
-            template: ' <my-customer></my-customer>'
+             //template: ' <my-instructors></my-instructors>'
+            templateUrl: '/templates/directives/instructorInfo.html'
             });
     };
 

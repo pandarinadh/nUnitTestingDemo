@@ -13,7 +13,7 @@
 */
 
 
-registrationModule.directive('myCustomer', function () {
+registrationModule.directive('myInstructors', function () {
 
    
         return {
