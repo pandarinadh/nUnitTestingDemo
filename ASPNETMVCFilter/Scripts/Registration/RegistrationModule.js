@@ -5,6 +5,7 @@ var registrationModule = angular.module("RegistrationModule", ['ngRoute', 'ngMat
         $routeProvider.when('/Registration', { templateUrl: '/templates/courses.html', controller: 'CoursesController' });
         $routeProvider.when('/Registration/Courses', { templateUrl: '/templates/courses.html', controller: 'CoursesController' });
         $routeProvider.when('/Registration/Instructors', { templateUrl: '/templates/instructors.html', controller: 'InstructorsController' });
+        $routeProvider.when('/Registration/Students', { templateUrl: '/templates/students.html', controller: 'StudentsController' });
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false

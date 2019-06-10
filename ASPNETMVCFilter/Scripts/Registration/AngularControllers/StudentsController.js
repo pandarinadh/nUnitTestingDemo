@@ -1,7 +1,8 @@
 ﻿'use strict';
 
-registrationModule.controller("CoursesController",  function ($scope, $mdDialog, myData) {
-    $scope.courses = myData.courses;
+var StudentsController = registrationModule.controller("StudentsController", function ($scope, $mdDialog, myData) {
+    
+    $scope.students = myData.students;
 
     $scope.showApplyChangesDialog = function ($event) {
         $mdDialog.show({

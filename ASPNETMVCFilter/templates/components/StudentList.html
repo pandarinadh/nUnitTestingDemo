@@ -1,0 +1,12 @@
+﻿<div class="row">
+    <div class="span10">
+        <button ng-click="showDialog($event)" class="md-raised">
+            Custom Dialog
+        </button>
+        <button ng-click="showApplyChangesDialog($event)" class="md-raised">
+            Apply Changes
+        </button>
+       
+    </div>
+</div>
+<student-detail ng-repeat="student in $ctrl.students" student="student"></student-detail>

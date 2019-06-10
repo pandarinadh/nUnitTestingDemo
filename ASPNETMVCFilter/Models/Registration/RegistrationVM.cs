@@ -10,5 +10,7 @@ namespace ASPNETMVCFilter.Models.Registration
         public string Courses { get; set; }
         public string Instructors { get; set; }
 
+        public string Students { get; set; }
+
     }
 }

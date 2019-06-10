@@ -24,6 +24,7 @@ namespace ASPNETMVCFilter.Models.Builder
         {
             RegistrationVM.Courses = GetSerializedCoursesVms();
             RegistrationVM.Instructors = GetSerializedInstructorsVM();
+            RegistrationVM.Students = GetSerializedStudentVms();
 
             return RegistrationVM;
         }
@@ -41,7 +42,7 @@ namespace ASPNETMVCFilter.Models.Builder
 
             return JsonConvert.SerializeObject(courses, Formatting.None, settings);
         }
-
+        
         private string GetSerializedInstructorsVM()
         {
             var instructors = new[]
@@ -55,6 +56,21 @@ namespace ASPNETMVCFilter.Models.Builder
 
             return JsonConvert.SerializeObject(instructors, Formatting.None, settings);
         }
+
+        private string GetSerializedStudentVms()
+        {
+            var students = new[]
+            {
+                new StudentVM { Number ="ZYXW",Name="Student1", Instructor = "Dravid", Course = "Course1"  },
+                new StudentVM { Number ="VUTS",Name="Student2", Instructor = "Dravid", Course = "Course2" },
+                new StudentVM { Number ="RQPO",Name="Student3", Instructor = "Dravid", Course = "Course3" }
+            };
+
+            var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+
+            return JsonConvert.SerializeObject(students, Formatting.None, settings);
+        }
+
 
     }
 }
