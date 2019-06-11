@@ -15,28 +15,32 @@
     </script>
 }
 
-<div class="container">
+<div>
+    <h3>Registration</h3>
+
     <div class="row">
-        <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <ul class="nav navbar-nav">
-                    <li><span class="navbar-brand">Registration</span></li>
+        <div class="col-md-2">
+            <nav class="navbar bg-light navbar-light">
+
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li>
+                        <a href="/Registration/Courses" class="nav-link">Course</a>
+                    </li>
+                    <li>
+                        <a href="/Registration/Instructors" class="nav-link">Instructors</a>
+                    </li>
+                    <li>
+                        <a href="/Registration/Students" class="nav-link">Students</a>
+                    </li>
                 </ul>
-            </div>
-        </div> 
-       <div class="navbar-collapse collapse">
-           <ul class="nav navbar-nav">
-               <li>
-                   <a href="/Registration/Courses">Browse Catalog</a>
-               </li>
-               <li>
-                   <a href="/Registration/Instructors">Browse Instructors</a>
-               </li>
-               <li>
-                   <a href="/Registration/Students">Browse Students</a>
-               </li>
-           </ul>
-       </div>
-        <div ng-view></div>
-    </div>
-    </div>
+            </nav>
+        </div>
+        <div class="col-md-8">
+            <div ng-view></div>
+        </div>
+ </div>
+
+    
+    
+</div>

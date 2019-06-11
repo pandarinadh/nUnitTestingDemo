@@ -1,10 +1,11 @@
-﻿<div class="card">
-    <div class="card-container">
-        <p>Number: {{$ctrl.student.number}}</p>
-        <p>Name: {{$ctrl.student.name}}</p>
-        <p>Course: {{$ctrl.student.course}}</p>
-        <p>Instructor: {{$ctrl.student.instructor}}</p>
+﻿    <div class="card">
+        <div class="card-header" ng-click="$ctrl.testFunc()" >{{$ctrl.student.name}}</div>
+        <div class="card-body text-center">
+            <p>Number: {{$ctrl.student.number}}</p>
+            <p>Course: {{$ctrl.student.course}}</p>
+            <p>Instructor: {{$ctrl.student.instructor}}</p>
+        </div>
     </div>
-</div>
+
   
 
