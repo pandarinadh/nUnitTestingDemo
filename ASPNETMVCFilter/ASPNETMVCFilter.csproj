@@ -1031,6 +1031,7 @@
     <Content Include="Scripts\angular\respond.js" />
     <Content Include="Scripts\angular\respond.min.js" />
     <Content Include="Scripts\angular\_references.js" />
+    <Content Include="templates\components\ModifyStudent.html" />
     <Content Include="templates\components\StudentDetail.html" />
     <Content Include="templates\components\StudentList.html" />
     <Content Include="templates\courses.html" />

@@ -5,6 +5,6 @@
         </div>
     </div>
     <div class="row"  style="margin-top: 30px;">
-        <student-list students="students"></student-list>
+        <student-list students="students" on-add-student="showAddStudentDialog()" student="student" on-save-student="saveDialog()" on-modify-dialog ="modifyDialog()"></student-list>
     </div>
 </div>

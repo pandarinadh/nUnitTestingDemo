@@ -1,13 +1,10 @@
 ﻿
     <div class="row">
-            <button ng-click="showDialog($event)" class="md-raised">
-                Custom Dialog
-            </button>
-            <button ng-click="showApplyChangesDialog($event)" class="md-raised">
-                Apply Changes
-            </button>
+        <button ng-click="$ctrl.addStudent($event)" class="md-raised">
+            Add Student
+        </button>
     </div>
     
     <div class="card-columns"  style="margin-top: 30px;">
-        <student-detail ng-repeat="student in $ctrl.students" student="student"></student-detail>
+        <student-detail ng-repeat="student in $ctrl.students" student="student" on-modify-dialog ="$ctrl.modifyDialog(student)"></student-detail>
     </div>

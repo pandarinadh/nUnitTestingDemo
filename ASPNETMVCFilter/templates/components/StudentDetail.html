@@ -1,5 +1,12 @@
 ﻿    <div class="card">
-        <div class="card-header" ng-click="$ctrl.testFunc()" >{{$ctrl.student.name}}</div>
+        <div class="card-header">
+            <div class="row">
+                <div style="text-align:left; width: 90%;">{{$ctrl.student.name}}</div>
+                <div style="text-align:right;">
+                    <a ng-click="$ctrl.modifyDialog()" style="cursor:pointer;">. . .</a>
+                </div>
+            </div>
+        </div>
         <div class="card-body text-center">
             <p>Number: {{$ctrl.student.number}}</p>
             <p>Course: {{$ctrl.student.course}}</p>

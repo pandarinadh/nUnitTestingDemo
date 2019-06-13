@@ -1,11 +1,30 @@
 ﻿registrationModule.component('studentList', {
     templateUrl: '/templates/components/StudentList.html',
     bindings: {
-        students: '='
+        students: '=',
+        student: '=',
+        onAddStudent: '&',
+        onSaveStudent: '&',
+        onModifyDialog: '&'
     },
     controller: function ($scope, $element, $attrs) {
         // use this.parent to access required Objects
         //this.parent.foo();
-        console.log(this);
+   
+
+        this.addStudent = function () {
+              this.onAddStudent();
+        };
+
+        this.saveDialog = function () {
+            console.log(student);
+            this.onSaveStudent();
+        };
+
+        this.modifyDialog = function (s) {
+            this.student = s;
+            this.onModifyDialog();
+        };
+     
     }
 });

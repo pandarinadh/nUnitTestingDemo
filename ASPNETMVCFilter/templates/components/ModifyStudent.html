@@ -1,0 +1,56 @@
+﻿
+<md-dialog flex="20" id="arBillingNotes" aria-label="accounts receivable billing notes dialog">
+    <form novalidate class="simple-form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                Modify Student
+            </div>
+        </md-toolbar>
+
+        <md-container>
+            <table style="width: 100%">
+                <tr style="width: 100%; ">
+                    <td style="width: 100%; text-align: right;">
+                        <label>Number:</label> 
+                    </td>
+                    <td style="width: 100%;">
+                        <input type="text" ng-model="student.number" />
+                    </td>
+                </tr>
+                <tr style="width: 100%; ">
+                    <td style="width: 100%;text-align: right;">
+                        <label>Name:</label>
+                    </td>
+                    <td style="width: 100%;">
+                        <input type="text" ng-model="student.name" />
+                    </td>
+                </tr>
+                <tr style="width: 100%; ">
+                    <td style="width: 100%;text-align: right;">
+                        <label>Course:</label>
+                    </td>
+                    <td style="width: 100%;">
+                        <input type="text" ng-model="student.course" />
+                    </td>
+                </tr>
+                <tr style="width: 100%; ">
+                    <td style="width: 100%; text-align: right;">
+                        <label>instructor:</label>
+                    </td>
+                    <td style="width: 100%;">
+                        <input type="text" ng-model="student.instructor" />
+                    </td>
+                </tr>
+            </table>
+        </md-container>
+
+
+        <md-dialog-actions layout="row" ng-hide="showValidationOverrideMsg">
+            <div layout="row" layout-align="end">
+                <button ng-click="saveDialog($event)">Save</button>
+                <button ng-click="cancelDialog($event)">Cancel</button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+
