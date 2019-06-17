@@ -65,7 +65,11 @@ namespace ASPNETMVCFilter.Models.Builder
                 new StudentVM { Number ="VUTS",Name="Student2", Instructor = "Dravid", Course = "Course2" },
                 new StudentVM { Number ="RQPO",Name="Student3", Instructor = "Dravid", Course = "Course3" },
                 new StudentVM { Number ="RQPO",Name="Student4", Instructor = "Dravid", Course = "Course3" },
-                new StudentVM { Number ="RQPO",Name="Student5", Instructor = "Dravid", Course = "Course3" }
+                new StudentVM { Number ="RQPO",Name="Student5", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student6", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student7", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student8", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student9", Instructor = "Dravid", Course = "Course3" }
             };
 
             var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };

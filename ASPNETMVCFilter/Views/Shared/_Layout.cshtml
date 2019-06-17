@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="RegistrationModule">
+<html ng-app="RegistrationModule" class="h-100">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,8 +47,6 @@
         <h1>Student Test Center</h1>
         <p>Resize this responsive page to see the effect!</p>
     </div>
-    
-        
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
             <!-- Links -->
@@ -65,12 +63,14 @@
             </ul>
         </nav>
 
-    <div style="margin:30px;">
+    <div class="container" style="margin:30px;">
         @RenderBody()
+    
     </div>
-        <hr />
-    <div class="text-center" style="background-color:#e9ecef; padding:5.8%">
+    <hr />    
+   <div class="mt-auto d-flex justify-content-center" style="background-color:#e9ecef; margin-top:10px; height :100px; width: 100%; bottom:0;  position: fixed;">
         Footer
     </div>
+   
 </body>
 </html>
