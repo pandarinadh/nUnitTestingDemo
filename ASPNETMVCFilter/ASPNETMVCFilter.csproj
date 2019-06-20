@@ -263,6 +263,7 @@
     <Content Include="Scripts\Registration\components\StudentDetailComponent.js" />
     <Content Include="Scripts\Registration\components\StudetListComponent.js" />
     <Content Include="Scripts\Registration\directives\CourseInfoDirective.js" />
+    <Content Include="Scripts\Registration\directives\DraggableDirective.js" />
     <Content Include="Scripts\Registration\directives\InstructorInfoDirective.js" />
     <Content Include="Scripts\angular\errors.json" />
     <Content Include="Scripts\angular\angular.min.js.map" />
