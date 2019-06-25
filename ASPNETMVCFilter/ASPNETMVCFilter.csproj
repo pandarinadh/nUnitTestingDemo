@@ -262,6 +262,9 @@
     <Content Include="Scripts\Registration\AngularControllers\StudentsController.js" />
     <Content Include="Scripts\Registration\components\StudentDetailComponent.js" />
     <Content Include="Scripts\Registration\components\StudetListComponent.js" />
+    <Content Include="App_Data\data1.json" />
+    <None Include="Scripts\Registration\AngularControllers\data1.json" />
+    <Content Include="Scripts\Registration\Services\DataService.js" />
     <Content Include="Scripts\Registration\directives\CourseInfoDirective.js" />
     <Content Include="Scripts\Registration\directives\DraggableDirective.js" />
     <Content Include="Scripts\Registration\directives\InstructorInfoDirective.js" />
@@ -1079,9 +1082,7 @@
     <Content Include="Views\Courses\FromCode.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

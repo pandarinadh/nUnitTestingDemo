@@ -14,12 +14,14 @@
             width: '65px'
         });*/
 
+        console.log(element);
+
         element.on('mousedown', function (event) {
             event.preventDefault();
 
             element.css({
                 border: '1px solid red',
-                zIndex: 1
+                zIndex: 0
             });
 
             startX = event.screenX - x;
@@ -42,7 +44,8 @@
 
         function mouseup() {
             element.css({
-                border: '1px solid black'
+                border: '1px solid black',
+                zIndex: 1
             });
             $document.off('mousemove', mousemove);
             $document.off('mouseup', mouseup);

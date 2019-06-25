@@ -1,7 +1,10 @@
 ﻿'use strict';
 
-registrationModule.controller("CoursesController",  function ($scope, $mdDialog, myData) {
+registrationModule.controller("CoursesController", function ($scope, $mdDialog, $http,dataService, myData) {
     $scope.courses = myData.courses;
+    $scope.vendors = dataService.funcData();
+
+    console.log($scope.vendors);
 
     $scope.showApplyChangesDialog = function ($event) {
         $mdDialog.show({
@@ -24,7 +27,20 @@ registrationModule.controller("CoursesController",  function ($scope, $mdDialog,
 
         $mdDialog.hide();
     };
-
-
+    
+    $scope.fetchId = function (id) {
+       //alert(id);
 }
-);
+
+    $scope.myFunction = function () {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+    $scope.myClickFunc = function (id) {
+        alert(id);
+    }
+
+    $('.dropdown-menu').find('input').click(function (e) {
+       // alert('hi');
+        e.stopPropagation();
+    });
+});

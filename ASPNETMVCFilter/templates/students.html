@@ -5,6 +5,14 @@
         </div>
     </div>
     <span draggable style="position: relative; border: 1px solid black; background-color: lightgrey; cursor: pointer; display: block; width: 65px;">Drag ME</span>
+
+    <div class="col-md-3">
+        <input type="text" ng-model="search" list="names">
+        <datalist id="names" ng-model="name" style="max-height: 50px; height: 100px;">
+            <option ng-repeat="option in students | filter:search | limitTo:10" value="{{option.name}}"></option>
+        </datalist>
+    </div>
+
     <div class="row"  style="margin-top: 30px;">
         <student-list students="students" on-add-student="showAddStudentDialog()" student="student" on-save-student="saveDialog()" on-modify-dialog ="modifyDialog()"></student-list>
     </div>
