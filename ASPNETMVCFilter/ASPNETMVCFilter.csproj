@@ -264,7 +264,7 @@
     <Content Include="Scripts\Registration\components\StudetListComponent.js" />
     <Content Include="App_Data\data1.json" />
     <None Include="Scripts\Registration\AngularControllers\data1.json" />
-    <Content Include="Scripts\Registration\Services\DataService.js" />
+    <Content Include="Scripts\Registration\Services\VendorService.js" />
     <Content Include="Scripts\Registration\directives\CourseInfoDirective.js" />
     <Content Include="Scripts\Registration\directives\DraggableDirective.js" />
     <Content Include="Scripts\Registration\directives\InstructorInfoDirective.js" />

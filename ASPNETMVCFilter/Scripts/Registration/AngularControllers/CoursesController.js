@@ -1,10 +1,10 @@
 ﻿'use strict';
 
-registrationModule.controller("CoursesController", function ($scope, $mdDialog, $http,dataService, myData) {
+registrationModule.controller("CoursesController", function ($scope, $mdDialog, $http, vendorService, myData) {
     $scope.courses = myData.courses;
-    $scope.vendors = dataService.funcData();
+    $scope.vendors = vendorService.funcData();
 
-    console.log($scope.vendors);
+    //console.log($scope.vendors);
 
     $scope.showApplyChangesDialog = function ($event) {
         $mdDialog.show({

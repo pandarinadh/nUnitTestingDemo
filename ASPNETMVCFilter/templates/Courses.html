@@ -136,13 +136,13 @@ max-height: 200px;
 
             <div class="col-md-5">
                 <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" ng-click="myFunction()">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" ng-click="myFunction()" ng-="myFunction()">
                         Select <span class="caret"></span>
                     </button>
                     <div id="myDropdown" class="dropdown-content">
-                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                        <input type="text" placeholder="Search.." id="myInput" ng-model="query2">
                         <ul>
-                            <li role="presentation" ng-repeat="option in vendors | filter:option.vendorId">
+                            <li role="presentation" ng-repeat="option in vendors | filter:query2">
                                 <a ng-click="myClickFunc(option.vendorId)">{{option.vendorName}}</a>
                             </li>
                         </ul>

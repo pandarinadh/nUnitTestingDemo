@@ -1,4 +1,4 @@
-﻿registrationModule.service('dataService', function () {
+﻿registrationModule.service('vendorService', function () {
   
 
     this.funcData = function () {
