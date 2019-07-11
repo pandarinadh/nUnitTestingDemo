@@ -264,6 +264,7 @@
     <Content Include="Scripts\Registration\components\StudetListComponent.js" />
     <Content Include="App_Data\data1.json" />
     <None Include="Scripts\Registration\AngularControllers\data1.json" />
+    <Content Include="Scripts\Registration\directives\CustomSelectDirective.js" />
     <Content Include="Scripts\Registration\Services\VendorService.js" />
     <Content Include="Scripts\Registration\directives\CourseInfoDirective.js" />
     <Content Include="Scripts\Registration\directives\DraggableDirective.js" />
@@ -1040,6 +1041,7 @@
     <Content Include="templates\components\StudentList.html" />
     <Content Include="templates\courses.html" />
     <Content Include="templates\directives\courseInfo.html" />
+    <Content Include="templates\directives\customSelect.html" />
     <Content Include="templates\directives\instructorInfo.html" />
     <Content Include="templates\students.html" />
     <Content Include="templates\instructors.html" />

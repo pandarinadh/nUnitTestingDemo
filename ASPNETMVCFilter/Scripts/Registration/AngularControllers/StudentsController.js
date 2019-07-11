@@ -1,10 +1,25 @@
 ﻿'use strict';
 
-var StudentsController = registrationModule.controller("StudentsController", function ($scope, $mdDialog, myData) {
+var StudentsController = registrationModule.controller("StudentsController", function ($scope, $mdDialog, myData, vendorService) {
     
     $scope.students = myData.students;
     $scope.student = {};
    
+    $scope.vendors = vendorService.funcData();
+    $scope.items = [{
+        id: null,
+        name: null
+    }];
+
+    _.forEach($scope.vendors,
+                                  function (obj) {
+                                      $scope.items.push({
+                                          id: obj.id,
+                                          name: obj.vendorName
+                                      })
+                                  });
+
+
     $scope.cancelDialog = function () {
         $mdDialog.hide();
     };

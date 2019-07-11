@@ -1,10 +1,24 @@
 ﻿'use strict';
 
-registrationModule.controller("InstructorsController",['$scope', '$mdDialog','$templateCache','myData', function ($scope, $mdDialog,$templateCache, myData) {
+registrationModule.controller("InstructorsController", ['$scope', '$mdDialog', '$templateCache', 'myData', 'vendorService',  function ($scope, $mdDialog, $templateCache, myData, vendorService) {
     $scope.instructors = myData.instructors;
 
     $scope.myName = '';
     $scope.myTextArea = '';
+
+    $scope.vendors = vendorService.funcData();
+    $scope.items = [{
+        id: null,
+        name: null
+    }];
+
+    _.forEach($scope.vendors,
+                                  function (obj) {
+                                      $scope.items.push({
+                                          id: obj.id,
+                                          name: obj.vendorName
+                                      })
+                                  });
 
     $(function () {
         $.widget("custom.combobox", {

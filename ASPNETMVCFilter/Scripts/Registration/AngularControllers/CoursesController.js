@@ -3,6 +3,18 @@
 registrationModule.controller("CoursesController", function ($scope, $mdDialog, $http, vendorService, myData) {
     $scope.courses = myData.courses;
     $scope.vendors = vendorService.funcData();
+    $scope.items = [{
+        id: null,
+        name: null
+    }];
+
+    _.forEach($scope.vendors,
+                                  function (obj) {
+                                      $scope.items.push({
+                                          id: obj.id,
+                                          name: obj.vendorName
+                                      })
+                                  });
 
     //console.log($scope.vendors);
 
@@ -38,9 +50,12 @@ registrationModule.controller("CoursesController", function ($scope, $mdDialog, 
     $scope.myClickFunc = function (id) {
         alert(id);
     }
+    
 
     $('.dropdown-menu').find('input').click(function (e) {
        // alert('hi');
         e.stopPropagation();
     });
+
+    
 });

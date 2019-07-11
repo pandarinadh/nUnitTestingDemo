@@ -1,0 +1,62 @@
+﻿<style type="text/css">
+    .selectdemoSelectHeader {
+        /* Please note: All these selectors are only applied to children of elements with the 'selectdemoSelectHeader' class */
+    }
+
+        .selectdemoSelectHeader .demo-header-searchbox {
+            border: 1px solid #293078;
+            outline: none;
+            padding: 0;
+        }
+
+        .selectdemoSelectHeader .demo-select-header {
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+            padding-left: 10.667px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            margin: 0px;
+            align-items: center;
+            width: auto;
+        }
+
+    md-option {
+        margin: 0px;
+        height: 30px;
+    }
+
+        md-option:hover {
+            background-color: #293078 !important;
+            color: white;
+            margin: 0px;
+            height: 30px;
+        }
+
+    md-content {
+        background: white !important;
+    }
+
+    md-select-menu md-content {
+        max-height: 400px;
+    }
+
+    md-select-menu {
+        max-height: 400px;
+    }
+</style>
+
+<div class="select" ng-click="selclicked()" style="display: inline-block;padding:0px; margin:0px; border: 1px solid;">
+    <md-select md-container-class="my-container" class="sel" name="field" ng-model="priceVendor" data-md-container-class="selectdemoSelectHeader" ng-change="fnChange()" style="background-color: white; margin:0px; display: inline-block; width: 400px; max-height:400px; position:relative;">
+        <md-content scroll-glue-right>
+            <md-select-header layout="column" class="demo-select-header">
+                <md-input-container style="margin: 0px; width: 98%;">
+                    <input ng-model="searchTerm" type="search" ng-model-options="{debounce: {'default': 1000, 'blur': 0}}"
+                           placeholder="Search..." class="demo-header-searchbox md-text" ng-keydown="selectKeyDown($event)" />
+                </md-input-container>
+            </md-select-header>
+            <md-optgroup>
+                <md-option ng-value="vendor.id" ng-repeat="vendor in items | filter:searchTerm">{{vendor.name}}</md-option>
+            </md-optgroup>
+        </md-content>
+    </md-select>
+</div>
