@@ -10,5 +10,7 @@ namespace ASPNETMVCFilter.Models.Registration
         public string Number { get; set; }
         public string Name { get; set; }
         public string Subject { get; set; }
+
+        public List<StudentVM> Students { get; set; }
     }
 }

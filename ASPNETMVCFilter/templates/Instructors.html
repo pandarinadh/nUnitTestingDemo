@@ -16,6 +16,82 @@
         margin: 0;
         padding: 5px 10px;
     }
+
+
+
+    
+.md-accordion .expandCollapse { 
+  width:30px;
+  height:30px;
+  position:relative;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  /*color:black;*/
+  color:#fff;
+  display:block;
+  margin-top: -2px;
+  margin-left: -2px;
+  overflow:hidden;
+}
+.md-accordion .expandCollapse:active {
+  border:0px;
+}
+.md-accordion .expandCollapse:before, .md-accordion .expandCollapse:after {
+  width:30px;
+  height:30px;
+  display:block;
+  position:absolute;
+  top:0; left:0;
+  line-height:32px;
+  text-align:center;
+  -webkit-transition: .3s all ease-out;
+  transition: .3s all ease-out;
+}
+.md-accordion .expandCollapse:before { 
+  opacity:1
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  content: "|";
+  margin-top:-3px;
+}
+.md-accordion .expandCollapse:after {
+  opacity:1;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  content: "|";
+  margin-left:-3px;
+}
+.md-accordion .active:before {
+  opacity:1;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin-left:3px;
+  margin-top:0px;
+}
+
+.md-accordion .dataContent {
+  background: white;
+  height:0px;
+  overflow:hidden;
+  -webkit-transition: .3s all ease-out;
+  transition: .3s all ease-out;
+}
+
+.md-accordion .activeContent {
+  height:auto;
+  padding:5px;
+  display:block;
+}
+
+.md-accordion md-toolbar{
+  cursor:pointer;
+  border-bottom:1px solid rgb(63,107,181);
+  min-height:10px;
+ /* background-color: white;
+  color:black;*/
+}
+
 </style>
 <div class="container">
 
@@ -25,65 +101,99 @@
         </div>
     </div>
 
-    <div class="row">
-        <custom-select></custom-select>
-    </div>
-
-    <div class="row" style="margin-top: 30px;">
-        <div class="span10">
-            <button ng-click="showDialog($event)" class="md-raised">
-                Custom Dialog
-            </button>
-            <button ng-click="showApplyChangesDialog($event)" class="md-raised">
-                Apply Changes
-            </button>
+    <div class="md-accordion" ng-repeat="data in accordianData">
+        <md-toolbar ng-init="data.expanded = false" ng-click="collapseAll(data)">
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>{{data.heading}}</span>
+                </h2>
+                <span flex=""></span>
+                <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+            </div>
+        </md-toolbar>
+        <div ng-class="{dataContent:true, activeContent:data.expanded}">{{data.content}}</div>
         </div>
-    </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Subject</th>
+                    </tr>
+                    <tr ng-repeat="instructor in instructors">
+                        <td>{{instructor.number}}</td>
+                        <td>{{instructor.name}}</td>
+                        <td>{{instructor.subject}}</td>
+                    </tr>
+                </table>
+
+                <div style="max-height: 200px; overflow:scroll;">
+                    <div class="md-accordion" ng-repeat="instructor in instructors">
+                        <md-toolbar ng-init="instructor.expanded = false" ng-click="collapseAll1(instructor)">
+                            <div>
+                                <div class="col-lg-1">{{instructor.number}}</div>
+                                <div class="col-lg-1">{{instructor.name}}</div>
+                                <div class="col-lg-3">{{instructor.subject}}</div>
+                                <span flex=""></span>
+                                <span ng-class="{expandCollapse:true, active:instructor.expanded}"></span>
+                            </div>
+                        </md-toolbar>
+                        <div ng-class="{dataContent:true, activeContent:instructor.expanded}" ng-repeat="student in instructor.students">
+                            <div class="col-lg-1">{{student.number}}</div>
+                            <div class="col-lg-1">{{student.name}}</div>
+                            <div class="col-lg-1">{{student.instructor}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <custom-select></custom-select>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="span10">
+                    <button ng-click="showDialog($event)" class="md-raised">
+                        Custom Dialog
+                    </button>
+                    <button ng-click="showApplyChangesDialog($event)" class="md-raised">
+                        Apply Changes
+                    </button>
+                </div>
+            </div>
 
 
-    <div class="ui-widget">
-        <label>Your preferred programming language: </label>
-        <select id="combobox">
-            <option value="">Select one...</option>
-            <option value="ActionScript">ActionScript</option>
-            <option value="AppleScript">AppleScript</option>
-            <option value="Asp">Asp</option>
-            <option value="BASIC">BASIC</option>
-            <option value="C">C</option>
-            <option value="C++">C++</option>
-            <option value="Clojure">Clojure</option>
-            <option value="COBOL">COBOL</option>
-            <option value="ColdFusion">ColdFusion</option>
-            <option value="Erlang">Erlang</option>
-            <option value="Fortran">Fortran</option>
-            <option value="Groovy">Groovy</option>
-            <option value="Haskell">Haskell</option>
-            <option value="Java">Java</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="Lisp">Lisp</option>
-            <option value="Perl">Perl</option>
-            <option value="PHP">PHP</option>
-            <option value="Python">Python</option>
-            <option value="Ruby">Ruby</option>
-            <option value="Scala">Scala</option>
-            <option value="Scheme">Scheme</option>
-        </select>
-    </div>
-    <button id="toggle">Show underlying select</button>
+            <div class="ui-widget">
+                <label>Your preferred programming language: </label>
+                <select id="combobox">
+                    <option value="">Select one...</option>
+                    <option value="ActionScript">ActionScript</option>
+                    <option value="AppleScript">AppleScript</option>
+                    <option value="Asp">Asp</option>
+                    <option value="BASIC">BASIC</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="Clojure">Clojure</option>
+                    <option value="COBOL">COBOL</option>
+                    <option value="ColdFusion">ColdFusion</option>
+                    <option value="Erlang">Erlang</option>
+                    <option value="Fortran">Fortran</option>
+                    <option value="Groovy">Groovy</option>
+                    <option value="Haskell">Haskell</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Lisp">Lisp</option>
+                    <option value="Perl">Perl</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Python">Python</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Scala">Scala</option>
+                    <option value="Scheme">Scheme</option>
+                </select>
+            </div>
+            <button id="toggle">Show underlying select</button>
 
 
-    <div class="row" style="margin-top: 30px;">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Number</th>
-                    <th>Name</th>
-                    <th>Subject</th>
-                </tr>
-                <tr ng-repeat="instructor in instructors">
-                    <td>{{instructor.number}}</td>
-                    <td>{{instructor.name}}</td>
-                    <td>{{instructor.subject}}</td>
-                </tr>
-            </table>
-    </div>
-</div>
+
+        </div>

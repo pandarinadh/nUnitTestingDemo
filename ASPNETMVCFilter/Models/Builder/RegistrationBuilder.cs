@@ -31,11 +31,20 @@ namespace ASPNETMVCFilter.Models.Builder
 
         private string GetSerializedCoursesVms()
         {
+            var instructors = new List<InstructorsVM>
+            {
+                new InstructorsVM { Number ="ZYXW",Subject="ASP.NET Overview 1", Name = "Dravid" },
+                new InstructorsVM { Number ="VUTS",Subject="ASP.NET Overview 2", Name = "Dravid" },
+                new InstructorsVM { Number ="RQPO",Subject="ASP.NET Overview 3", Name = "Dravid" }
+            };
             var courses = new[]
             {
-                new CourseVM { Number ="ZYXW",Name="ASP.NET Overview 1", Instructor = "Dravid" },
-                new CourseVM { Number ="VUTS",Name="ASP.NET Overview 2", Instructor = "Dravid" },
-                new CourseVM { Number ="RQPO",Name="ASP.NET Overview 3", Instructor = "Dravid" }
+                new CourseVM { Number ="ZYXW",Name="ASP.NET Overview 1",
+                    Instructors= instructors },
+                new CourseVM { Number ="VUTS",Name="ASP.NET Overview 2",
+                    Instructors= instructors },
+                new CourseVM { Number ="RQPO",Name="ASP.NET Overview 3",
+                    Instructors= instructors }
             };
 
             var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
@@ -45,11 +54,24 @@ namespace ASPNETMVCFilter.Models.Builder
         
         private string GetSerializedInstructorsVM()
         {
+            var students = new List<StudentVM>
+            {
+                new StudentVM { Number ="ZYXW",Name="Student1", Instructor = "Dravid", Course = "Course1"  },
+                new StudentVM { Number ="VUTS",Name="Student2", Instructor = "Dravid", Course = "Course2" },
+                new StudentVM { Number ="RQPO",Name="Student3", Instructor = "Dravid", Course = "Course3"  },
+                new StudentVM { Number ="RQPO",Name="Student4", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student5", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student6", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student7", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student8", Instructor = "Dravid", Course = "Course3" },
+                new StudentVM { Number ="RQPO",Name="Student9", Instructor = "Dravid", Course = "Course3" }
+            };
+
             var instructors = new[]
             {
-                new InstructorsVM { Number ="ZYXW",Subject="ASP.NET Overview 1", Name = "Dravid" },
-                new InstructorsVM { Number ="VUTS",Subject="ASP.NET Overview 2", Name = "Dravid" },
-                new InstructorsVM { Number ="RQPO",Subject="ASP.NET Overview 3", Name = "Dravid" }
+                new InstructorsVM { Number ="ZYXW",Subject="ASP.NET Overview 1", Name = "Dravid", Students=students },
+                new InstructorsVM { Number ="VUTS",Subject="ASP.NET Overview 2", Name = "Dravid" , Students=students },
+                new InstructorsVM { Number ="RQPO",Subject="ASP.NET Overview 3", Name = "Dravid" , Students=students }
             };
 
             var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };

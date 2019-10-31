@@ -9,7 +9,7 @@ namespace ASPNETMVCFilter.Models.Registration
     {
         public string Number { get; set; }
         public string Name { get; set; }
-        public string Instructor { get; set; }
+        public List<InstructorsVM> Instructors { get; set; }
 
     }
 }

@@ -57,5 +57,25 @@ registrationModule.controller("CoursesController", function ($scope, $mdDialog, 
         e.stopPropagation();
     });
 
-    
+    $scope.users = [
+    {
+        name: { first: 'try', last: 'try' }
+    },
+    {
+        name: { first: 'try2', last: 'try2' }
+    },
+    {
+        name: { first: 'try3', last: 'try3' }
+    }];
+
+
+    $scope.selectedUserIndex = undefined;
+    $scope.selectUserIndex = function (index) {
+        if ($scope.selectedUserIndex !== index) {
+            $scope.selectedUserIndex = index;
+        }
+        else {
+            $scope.selectedUserIndex = undefined;
+        }
+    };
 });

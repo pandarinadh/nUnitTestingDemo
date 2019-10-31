@@ -84,6 +84,80 @@ width: 400px;
 overflow:auto;
 max-height: 200px;
 }
+md-content {
+  background-color: #ECEFF1!important;
+  padding: 10px;
+}
+.selected-item ~ .item .user,
+.item:first-child .user {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.selected-item ~ .item .user.selected,
+.item:first-child .user.selected {
+  margin-top: 0;
+}
+.item:last-child .user {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.item .tile .folded {
+  cursor: pointer;
+}
+.item .user {
+  background-color: white;
+  transition: all 500ms;
+}
+.item .user h3,
+.item .user p {
+  transition: all 500ms;
+}
+.item .user p {
+  opacity: 1;
+  height: inherit;
+}
+.item .user p.ng-hide {
+  opacity: 0;
+  height: 0;
+}
+.item .user.selected {
+  margin: 30px -15px;
+  border-radius: 2px;
+}
+.item .user.selected .expanded {
+  visibility: visible;
+}
+.item .user.selected .expanded,
+.item .user.selected .expanded > * {
+  max-height: 700px;
+  opacity: 1;
+}
+.item .user.selected .expanded .md-label {
+  border: hidden;
+}
+.item .user.selected h3 {
+  font-size: 1.8em;
+}
+.item .user .expanded {
+  visibility: hidden;
+}
+.item .user .expanded,
+.item .user .expanded > * {
+  max-height: 0;
+  opacity: 0;
+  transition: all 500ms;
+}
+.item .user .expanded .split {
+  padding: 10px;
+}
+.item .user .face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  height: 20px;
+  margin: 16px;
+}
+
 </style>
 
 <div class="container">
@@ -93,35 +167,101 @@ max-height: 200px;
         </div>
     </div>
 
-    <div class="row" style="margin-top: 30px;">
-        <button ng-click="showApplyChangesDialog($event)" class="md-raised">
-            Apply Changes
-        </button>
-    </div>
-    <div class="row" style="margin-top: 30px;">
-        <div class="col-md-3">
-            <div class="dropdown dropdown-scroll">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width: 375px; height: 30px;">
-                    <div style="float:right">
-                        <span class="caret" style="text-align: right;"></span>
-                    </div>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation">
-                        <div class="input-group input-group-sm search-control">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </span>
-                            <input type="text" placeholder="Query" ng-model="query1" id="myInput" style="width: 100%;" />
+    <md-content layout="row" flex layout-align="center" layout-fill>
+        <div flex="70" class="content" ui-view>
+            <md-item ng-repeat="user in users" class="item" ng-class="{ 'selected-item': $index == selectedUserIndex}">
+                <md-item-content class="user tile md-whiteframe-z1" ng-class="{ 'selected md-whiteframe-z2': $index == selectedUserIndex}" layout="column">
+                    <div layout="row" layout-fill ng-click="selectUserIndex($index)" class="folded">
+                        <div class="md-tile-left">
+                            <img ng-src="{{ user.face }}" class="face">
                         </div>
-                    </li>
-                    <li role="presentation" ng-repeat='option in vendors | filter:query1'>
-                        <a ng-click="myClickFunc(option.vendorId)"> {{option.vendorName}} </a>
-                    </li>
-                </ul>
+                        <div class="md-tile-content" layout="column" layout-align="center start">
+                            <h3>{{ user.name.first + " " + user.name.last }}</h3>
+                            <p ng-hide="$index == selectedUserIndex">
+                                <span>Something</span>
+                            </p>
+                        </div>
+                    </div>
+                    <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
+                    <div layout="column" layout-fill class="expanded">
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                        <br />
+                        <span>some content</span>
+                    </div>
+                </md-item-content>
+                <md-divider class="divider-inset" ng-if="!$last"></md-divider>
+            </md-item>
+        </div>
+        </md-content>
+    <div class="row" style="margin-top: 30px;">
+        <table class="table table-bordered">
+            <tr>
+                <th>Course</th>
+                <th>Course Name</th>
+                <th>Instructor</th>
+            </tr>
+            <tr ng-repeat="course in courses" class="item folded" ng-class="{ 'selected-item': $index == selectedUserIndex}" layout-fill ng-click="selectUserIndex($index)" >
+                <td>{{course.number}}</td>
+                <md-divider layout-fill ng-show="$index == selectedUserIndex"></md-divider>
+                <div layout="column" layout-fill class="expanded">
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                    <br />
+                    <span>some content</span>
+                </div>
+                <td>{{course.name}}</td>
+                <td>{{course.instructor}}</td>
+            </tr>
+        </table>
+    </div>
+        <div class="row" style="margin-top: 30px;">
+            <button ng-click="showApplyChangesDialog($event)" class="md-raised">
+                Apply Changes
+            </button>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-3">
+                <div class="dropdown dropdown-scroll">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width: 375px; height: 30px;">
+                        <div style="float:right">
+                            <span class="caret" style="text-align: right;"></span>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <div class="input-group input-group-sm search-control">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </span>
+                                <input type="text" placeholder="Query" ng-model="query1" id="myInput" style="width: 100%;" />
+                            </div>
+                        </li>
+                        <li role="presentation" ng-repeat='option in vendors | filter:query1'>
+                            <a ng-click="myClickFunc(option.vendorId)"> {{option.vendorName}} </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-5">
                 <div style="width: 100%;">
@@ -149,9 +289,9 @@ max-height: 200px;
                 </div>
             </div>
             <div class="col-md-5">
-               <custom-select></custom-select>
+                <custom-select></custom-select>
             </div>
-         </div>
+        </div>
 
 </div>
 
@@ -172,18 +312,7 @@ max-height: 200px;
         </table>
     </div>
 
-        <div class="row" style="margin-top: 30px;">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                </tr>
-                <tr ng-repeat="course in courses">
-                    <td>{{course.number}}</td>
-                    <td>{{course.name}}</td>
-                    <td>{{course.instructor}}</td>
-                </tr>
-            </table>
-        </div>
+       
+
+
     </div>
