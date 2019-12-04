@@ -219,12 +219,25 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ag-grid.css" />
+    <Content Include="Content\ag-theme-balham.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular\ag-grid-community.cjs.js" />
+    <Content Include="Scripts\angular\ag-grid-community.esm.js" />
+    <Content Include="Scripts\angular\ag-grid-community.esm.min.js" />
+    <Content Include="Scripts\angular\ag-grid-community.js" />
+    <Content Include="Scripts\angular\ag-grid-community.min.js" />
+    <Content Include="Scripts\angular\ag-grid-community.min.noStyle.js" />
+    <Content Include="Scripts\angular\ag-grid-community.noStyle.js" />
+    <Content Include="Scripts\angular\ag-grid-enterprise.js" />
+    <Content Include="Scripts\angular\ag-grid-enterprise.min.js" />
+    <Content Include="Scripts\angular\ag-grid-enterprise.min.noStyle.js" />
+    <Content Include="Scripts\angular\ag-grid-enterprise.noStyle.js" />
     <Content Include="Scripts\angular\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\angular\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\angular\angular-animate.js" />
@@ -259,6 +272,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Registration\AngularControllers\AGGridController.js" />
     <Content Include="Scripts\Registration\AngularControllers\StudentsController.js" />
     <Content Include="Scripts\Registration\components\StudentDetailComponent.js" />
     <Content Include="Scripts\Registration\components\StudetListComponent.js" />
@@ -1036,6 +1050,7 @@
     <Content Include="Scripts\angular\respond.js" />
     <Content Include="Scripts\angular\respond.min.js" />
     <Content Include="Scripts\angular\_references.js" />
+    <Content Include="templates\AGgrid.html" />
     <Content Include="templates\components\ModifyStudent.html" />
     <Content Include="templates\components\StudentDetail.html" />
     <Content Include="templates\components\StudentList.html" />
