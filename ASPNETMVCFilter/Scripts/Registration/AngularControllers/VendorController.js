@@ -1,4 +1,4 @@
-﻿var AGGridController = registrationModule.controller("AGGridController", function ($scope, vendorService) {
+﻿var VendorController = registrationModule.controller("VendorController", function ($scope, vendorService, MaterialBOMService) {
 
     var columnDefs = [
         
@@ -39,9 +39,12 @@
 
     $scope.myfunc = function () {
        // alert('hi');
-        var gridDiv = document.querySelector('#myGrid');
+        var gridDiv = document.querySelector('#myGrid1');
         new agGrid.Grid(gridDiv, gridOptions);
         $scope.vendors = vendorService.funcData();
+
+        console.log(MaterialBOMService.funcData());
+
         console.log($scope.vendors);
         gridOptions.api.setRowData($scope.vendors);
     };
