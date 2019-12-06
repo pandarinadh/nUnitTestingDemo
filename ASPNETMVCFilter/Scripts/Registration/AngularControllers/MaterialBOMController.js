@@ -6,8 +6,8 @@
         { headerName: "description", field: "description" },
         { headerName: "jobStatus", field: "jobStatus", sortable: true, filter: true },
         { headerName: "paceNumber", field: "paceNumber"},
-        { headerName: "namedStatus", field: "namedStatus" },
-         { headerName: "vendorName", field: "vendorName" },
+        { headerName: "namedStatus", field: "namedStatus", filter: 'agSetColumnFilter', filterParams: { applyButton: true, clearButton: true } },
+         { headerName: "vendorName", field: "vendorName", filter: 'agSetColumnFilter' },
     ];
 
 
@@ -20,7 +20,11 @@
         animateRows: true,
         columnDefs: columnDefs,
         rowSelection: 'multiple',
+        enableCellTextSelection: true,
+        enableRangeSelection: true,
+        suppressCopyRowsToClipboard:true,
         masterDetail: true,
+        enableCellTextSelection: true,
         onFilterChanged: function (e) {
             console.log('onFilterChanged', e);
             console.log('gridApi.getFilterModel() =>', e.api.getFilterModel());
@@ -28,12 +32,13 @@
         detailCellRendererParams: {
             detailGridOptions: {
                 columnDefs: [
-                    { field: 'warehouseCode' },
+                    { field: 'warehouseCode', filter: 'agSetColumnFilter' },
                     { field: 'warehouseName' },
                     { field: 'partDescription' },
                     { field: 'onHandQty' },
                     { field: 'scopedQty' },
                 ],
+                filter: true,
                 onFirstDataRendered: function (params) {
                     params.api.sizeColumnsToFit();
                 }
@@ -60,8 +65,8 @@
 
     $scope.myfunc = function () {
      //   alert('hi');
-        var gridDiv = document.querySelector('#myGrid');
-        new agGrid.Grid(gridDiv, masterGridOptions);
+       var gridDiv = document.querySelector('#myGrid');
+       new agGrid.Grid(gridDiv, masterGridOptions);
         $scope.materials = MaterialBOMService.funcData();
 
         // to get the json property names.      
