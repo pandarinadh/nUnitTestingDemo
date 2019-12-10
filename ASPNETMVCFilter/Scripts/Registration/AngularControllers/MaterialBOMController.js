@@ -6,11 +6,36 @@
         { headerName: "description", field: "description" },
         { headerName: "jobStatus", field: "jobStatus", sortable: true, filter: true },
         { headerName: "paceNumber", field: "paceNumber"},
-        { headerName: "namedStatus", field: "namedStatus", filter: 'agSetColumnFilter', filterParams: { applyButton: true, clearButton: true } },
-         { headerName: "vendorName", field: "vendorName", filter: 'agSetColumnFilter' },
+        {
+            headerName: "namedStatus", field: "namedStatus", filter: 'agSetColumnFilter', keyCreator: namedStatusKeyCreator
+        },
+         {
+             headerName: "vendorName", field: "vendorName", filter: 'agSetColumnFilter',
+             filterParams: {
+                 values: function (params) {
+                     setTimeout(function () {
+                         params.success(['value 1', 'value 2'])
+                     }, 5000);
+                 }
+             }
+         }
     ];
 
+    function namedStatusKeyCreator(params) {
+        var key;
+        if (params.value === 'Open')
+        {
+            key = 'Open';
+        }
+        else
+        {
+            key = 'Not Open';
+        }
 
+        //var countryObject = params.value;
+        //var key = countryObject.name;
+        return key;
+    }
     
     var masterGridOptions = {
         defaultColDef: {
@@ -32,7 +57,10 @@
         detailCellRendererParams: {
             detailGridOptions: {
                 columnDefs: [
-                    { field: 'warehouseCode', filter: 'agSetColumnFilter' },
+                    {
+                        field: 'warehouseCode', filter: 'agSetColumnFilter'
+                       
+                    },
                     { field: 'warehouseName' },
                     { field: 'partDescription' },
                     { field: 'onHandQty' },
@@ -62,6 +90,11 @@
         //rowData: rowData
     };
 
+    function getWarehouseCodeValuesData(valuesParams)
+    {
+        console.log(valuesParams);
+
+    }
 
     $scope.myfunc = function () {
      //   alert('hi');
