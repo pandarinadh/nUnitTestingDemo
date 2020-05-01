@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -272,6 +273,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Registration\AngularControllers\CheckboxController.js" />
     <Content Include="Scripts\Registration\AngularControllers\MaterialBOMController.js" />
     <Content Include="Scripts\Registration\AngularControllers\VendorController.js" />
     <Content Include="Scripts\Registration\AngularControllers\StudentsController.js" />
@@ -280,6 +282,7 @@
     <Content Include="App_Data\data1.json" />
     <None Include="Scripts\Registration\AngularControllers\data1.json" />
     <Content Include="Scripts\Registration\directives\CustomSelectDirective.js" />
+    <Content Include="Scripts\Registration\Services\AGGridServices.js" />
     <Content Include="Scripts\Registration\Services\MaterialBOMService.js" />
     <Content Include="Scripts\Registration\Services\VendorService.js" />
     <Content Include="Scripts\Registration\directives\CourseInfoDirective.js" />
@@ -1052,6 +1055,7 @@
     <Content Include="Scripts\angular\respond.js" />
     <Content Include="Scripts\angular\respond.min.js" />
     <Content Include="Scripts\angular\_references.js" />
+    <Content Include="templates\checkbox.html" />
     <Content Include="templates\materialbom.html" />
     <Content Include="templates\vendordata.html" />
     <Content Include="templates\components\ModifyStudent.html" />

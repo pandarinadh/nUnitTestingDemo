@@ -1,7 +1,4 @@
-﻿var MaterialBOMController = registrationModule.controller("MaterialBOMController", function ($scope, vendorService, MaterialBOMService, AGGridServices) {
-
-    agGrid.LicenseManager.setLicenseKey(AGGridServices.Settings.LicenseKey);
-    //    agGrid.initialiseAgGridWithAngular1(angular);
+﻿var CheckboxController = registrationModule.controller("CheckboxController", function ($scope, vendorService, MaterialBOMService) {
 
     var columnDefs = [
         
@@ -51,44 +48,16 @@
         enableCellTextSelection: true,
         enableRangeSelection: true,
         suppressCopyRowsToClipboard:true,
-        masterDetail: true,
         enableCellTextSelection: true,
+        pagination: true,
         onFilterChanged: function (e) {
             console.log('onFilterChanged', e);
             console.log('gridApi.getFilterModel() =>', e.api.getFilterModel());
         },
-        detailCellRendererParams: {
-            detailGridOptions: {
-                columnDefs: [
-                    {
-                        field: 'warehouseCode', filter: 'agSetColumnFilter'
-                       
-                    },
-                    { field: 'warehouseName' },
-                    { field: 'partDescription' },
-                    { field: 'onHandQty' },
-                    { field: 'scopedQty' },
-                ],
-                filter: true,
-                onFirstDataRendered: function (params) {
-                    params.api.sizeColumnsToFit();
-                }
-            },
-
-            getDetailRowData: function (params) {
-                params.successCallback(params.data.dashboardInventoryItems);
-            }
-        },
+       
 
         onGridReady: function (params) {
-            setTimeout(function () {
-                params.api.sizeColumnsToFit();
-
-                var someRow = params.api.getRowNode("1");
-                if (someRow) {
-                    someRow.setExpanded(true);
-                }
-            }, 1500);
+          
         }
         //rowData: rowData
     };
@@ -100,8 +69,8 @@
     }
 
     $scope.myfunc = function () {
-     //   alert('hi');
-       var gridDiv = document.querySelector('#myGrid');
+        alert('hi');
+       var gridDiv = document.querySelector('#myGrid3');
        new agGrid.Grid(gridDiv, masterGridOptions);
         $scope.materials = MaterialBOMService.funcData();
 
